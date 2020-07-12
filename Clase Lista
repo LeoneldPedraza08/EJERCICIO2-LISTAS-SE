@@ -1,0 +1,102 @@
+package Enunciado02;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Fabrissio
+ */
+public class Lista {
+
+    private CNodo inicio;
+    private int tope;
+
+    static Scanner teclado = new Scanner(System.in);
+
+    public Lista() {
+        inicio = null;
+        tope = 0;
+    }
+
+    public boolean estaVacio() {
+        return inicio == null;
+    }
+
+    public void agregarInicio(int cod, String nom, double nota) {
+        CNodo nuevo = new CNodo();
+        nuevo.setCodigo(cod);
+        nuevo.setNombre(nom);
+        nuevo.setNota(nota);
+        if (estaVacio()) { //inicio es igual a null
+            inicio = nuevo;
+        } else {
+            nuevo.setSiguiente(inicio);
+            inicio = nuevo;
+        }
+        tope++;
+    }
+
+    public void mostrarDatos() {
+        if (!estaVacio()) {
+            CNodo aux = inicio;
+            while (aux != null) {
+                System.out.println("˄" + "\n"
+                        + "|" + "\n"
+                        + "[" + aux.getCodigo() + "] " + "\n"
+                        + "[" + aux.getNombre() + "] " + "\n"
+                        + "[" + aux.getNota() + "] ");
+                aux = aux.getSiguiente();
+            }
+        } else {
+            System.out.println("La lista esta vacia...");
+        }
+    }
+
+    public void eliminarDatos() {
+        if (estaVacio()) { //inicio es igual a null
+            System.out.print("La lista esta vacia..");
+        } else {
+            inicio = inicio.getSiguiente();
+            System.out.println("Datos eliminados..");
+        }
+        tope--;
+    }
+
+    public void ordenarDatos() {
+        if (!estaVacio()) {
+            CNodo aux = inicio;
+            CNodo aux1 = aux.getSiguiente();
+            while (aux != null) {
+                while (aux1 != null) {
+                    if (aux.getNota() < aux1.getNota()) {
+                        CNodo aux2 = aux1;
+                        aux1 = aux;
+                        aux = aux2;
+                        System.out.println("La lista esta ordenada...");
+                    }
+                    aux1 = aux1.getSiguiente();
+                }
+                aux = aux.getSiguiente();
+            }
+        } else {
+            System.out.println("La lista esta vacia...");
+        }
+    }
+
+    public void buscarDato(int cod) {
+        if (!estaVacio()) {
+            CNodo aux = inicio;
+            while (aux != null) {
+                if (aux.getCodigo() == cod) {
+                    System.out.println("[" + aux.getCodigo() + "] " + "\n"
+                            + "[" + aux.getNombre() + "] " + "\n"
+                            + "[" + aux.getNota() + "] ");
+                }
+                aux = aux.getSiguiente();
+            }
+        } else {
+            System.out.print("La lista esta vacia..");
+        }
+    }
+
+}
