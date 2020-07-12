@@ -68,7 +68,7 @@ public class Lista {
             CNodo aux1 = aux.getSiguiente();
             while (aux != null) {
                 while (aux1 != null) {
-                    if (aux.getNota() < aux1.getNota()) {
+                    if (aux.getNota() > aux1.getNota()) {
                         CNodo aux2 = aux1;
                         aux1 = aux;
                         aux = aux2;
