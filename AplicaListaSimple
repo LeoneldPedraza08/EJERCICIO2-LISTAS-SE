@@ -1,0 +1,84 @@
+package Enunciado02;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Fabrissio1
+ */
+public class AplicaListaSimple {
+
+    static Scanner teclado = new Scanner(System.in);
+    static Lista lista = new Lista();
+    static CNodo nodo;
+
+    public static void main(String[] args) {
+        menu();
+    }
+    
+    static void menu() {
+        int opcion;
+        do {
+            System.out.println("\nMenu de Opciones");
+            System.out.println("================");
+            System.out.println("[1] Ingresar Datos");
+            System.out.println("[2] Eliminar datos");
+            System.out.println("[3] Ordenar datos");
+            System.out.println("[4] Buscar datos");
+            System.out.println("[5] Mostrar lista");
+            System.out.println("=============");
+            System.out.println("[0] Salir");
+            System.out.print("Ingresar una opcion: ");
+            opcion = teclado.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    ingresarDatos();
+                break;
+
+                case 2:
+                    lista.eliminarDatos();
+                break;
+
+                case 3:
+                    lista.ordenarDatos();
+                break;
+                
+                case 4:
+                    buscarDatos();
+                break;
+                
+                case 5:
+                    lista.mostrarDatos();
+                break;
+                
+                default:
+                    System.out.println("Ingrese otra opcion..");
+            
+            }
+    
+        }while (opcion != 0);
+    }
+    
+    static void ingresarDatos() {
+        System.out.print("Ingrese codigo: ");
+        int cod = teclado.nextInt();
+        System.out.print("Ingrese nombre: ");
+        String nom = teclado.next();
+        System.out.print("Ingrese nota: ");
+        double nota = teclado.nextDouble();
+        while(nota <= 0 || nota >= 20.00){
+        System.out.print("Ingrese nota: ");
+        nota = teclado.nextDouble();
+        }
+        lista.agregarInicio(cod,nom, nota);
+    }
+    
+    static void buscarDatos(){
+        System.out.print("Para buscar datos de un alumno ingrese su codigo");
+        System.out.print("\nIngrese codigo: ");
+        int cod = teclado.nextInt();
+        lista.buscarDato(cod);
+    }
+    
+}
